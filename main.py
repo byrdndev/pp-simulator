@@ -79,71 +79,19 @@ plt.title('Predator–Prey Simulation with Reproductive Latency', fontsize=14)
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
 
-# Save plot to file
-output_file = 'plots/predator_prey_simulation.png'
-plt.savefig(output_file, dpi=150, bbox_inches='tight')
-print(f"\nPlot saved to: {output_file}")
 
-# Stochastic Visualization Plot
-
-plt.figure(figsize=(14, 7))
-
-# get extinction timestep
-predator_extinct_step = None
-for i, pop in enumerate(predator.population):
-    if pop == 0:
-        predator_extinct_step = sim.time[i]
-        break
-
-# jitter clouds
-prey_j = np.array(prey.population) + np.random.normal(0, 0.015*np.max(prey.population), len(prey.population))
-prey2_j = np.array(prey2.population) + np.random.normal(0, 0.015*np.max(prey2.population), len(prey2.population))
-pred_j = np.array(predator.population) + np.random.normal(0, 0.1*np.max(predator.population + [1]), len(predator.population))
-
-# smooth lines
-plt.plot(sim.time, prey.population, linewidth=2.5, color="#4A90E2", alpha=0.5)
-plt.plot(sim.time, prey2.population, linewidth=2.5, color="#7ED321", alpha=0.5)
-plt.plot(sim.time, predator.population, linewidth=2.5, color="#D0021B", alpha=0.6)
-
-# variance shading (prettiest part)
-plt.fill_between(sim.time,
-                 np.array(prey.population)*0.9,
-                 np.array(prey.population)*1.1,
-                 color="#4A90E2", alpha=0.10)
-
-plt.fill_between(sim.time,
-                 np.array(prey2.population)*0.9,
-                 np.array(prey2.population)*1.1,
-                 color="#7ED321", alpha=0.10)
-
-plt.fill_between(sim.time,
-                 np.array(predator.population)*0.85,
-                 np.array(predator.population)*1.15,
-                 color="#D0021B", alpha=0.15)
-
-# scatter jitter dots
-plt.scatter(sim.time, prey_j, s=10, color="#4A90E2", alpha=0.3, label="Prey (stochastic)")
-plt.scatter(sim.time, prey2_j, s=10, color="#7ED321", alpha=0.3, label="Prey2 (stochastic)")
-plt.scatter(sim.time, pred_j, s=25, color="#D0021B", alpha=0.4, label="Predator (stochastic)")
-
-# extinction marker
-if predator_extinct_step is not None:
-    plt.axvline(predator_extinct_step, color="black", linestyle="--", alpha=0.6)
-    plt.text(predator_extinct_step + 1, max(prey.population)*0.05,
-             "Predator Extinction", fontsize=12, color="black")
-
-# formatting
-plt.title("Stochastic Predator–Prey Graph", fontsize=18)
-plt.xlabel("Time")
-plt.ylabel("Population")
-plt.legend()
-plt.grid(alpha=0.3, linestyle="--")
+#Stochastic Visualization
+plt.figure(figsize=(8,6))
+plt.scatter(prey.population, predator.population, s=18, alpha=0.5, color="purple")
+plt.xlabel("Prey Population")
+plt.ylabel("Predator Population")
+plt.title("Phase-Space Predator vs Prey (Stochastic)")
+plt.grid(alpha=0.3)
 plt.tight_layout()
 
-# save file
-pretty_2 = "plots/Stochastic_Visualization.png"
-plt.savefig(pretty_2, dpi=150, bbox_inches="tight")
-print(f"Stochastic Plot")
+plt.savefig("stochastic plot.png", dpi=150)
+print("Stochastic Plot")
+
 
 
 # Print final statistics
