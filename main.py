@@ -17,6 +17,15 @@ prey = Species(
     initial_population=100
 )
 
+# Extra prey species
+prey2 = Species(
+    name="Prey2",
+    birth_rate=0.2,
+    death_rate=0.04,
+    latency_period=4,
+    initial_population=60
+)
+
 # Initialize predator population
 predator = Species(
     name="Predator",
@@ -28,7 +37,7 @@ predator = Species(
 
 # Create simulation with HIGHER interaction rate
 sim = Simulation(
-    prey=prey,
+    prey=[prey, prey2],
     predator=predator,
     interaction_rate=0.02,      # Increased from 0.02
     predation_success=0.8        # Slightly reduced from 0.8
@@ -60,6 +69,7 @@ print("Simulation complete!")
 # Plot results
 plt.figure(figsize=(12, 6))
 plt.plot(sim.time, prey.population, label='Prey', color='blue', linewidth=2)
+plt.plot(sim.time, prey2.population, label='Prey2', color='green', linewidth=2)
 plt.plot(sim.time, predator.population, label='Predator', color='red', linewidth=2)
 plt.xlabel('Time', fontsize=12)
 plt.ylabel('Population', fontsize=12)
