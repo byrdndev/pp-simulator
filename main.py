@@ -133,7 +133,7 @@ if predator_extinct_step is not None:
              "Predator Extinction", fontsize=12, color="black")
 
 # formatting
-plt.title("Enhanced Stochastic Predator–Prey Dynamics with Variance Bands", fontsize=18)
+plt.title("Stochastic Predator–Prey Graph", fontsize=18)
 plt.xlabel("Time")
 plt.ylabel("Population")
 plt.legend()
