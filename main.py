@@ -71,6 +71,7 @@ for t in range(1, timesteps + 1):
     # IMPORTANT: Without the extinction safety check, prey populations can grow uncontrollably, producing massive arrays that exhaust system memory and cause the simulation to crash.
     # So we are highly dependent upon the predotors to go extinct for the safety of the program.
     # Really it's just the first prey species given to us that causes this problem.
+    # I think... the most steps I've gotten is 95 before predator goes extinct
 
     # Safety check for extinction
     all_prey_extinct = all(len(p.ages) == 0 for p in [prey, prey2, prey3])
