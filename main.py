@@ -85,7 +85,7 @@ plt.figure(figsize=(8,6))
 plt.scatter(prey.population, predator.population, s=18, alpha=0.5, color="purple")
 plt.xlabel("Prey Population")
 plt.ylabel("Predator Population")
-plt.title("Phase-Space Predator vs Prey (Stochastic)")
+plt.title("Predator vs Prey (Stochastic)")
 plt.grid(alpha=0.3)
 plt.tight_layout()
 
