@@ -20,7 +20,7 @@ prey = Species(
 
 
 # ----------------------------------------------------
-# Not So Optional Extensions - Export results to CSV in /data/
+# Not So Optional Extensions - Add multiple prey variants
 # ----------------------------------------------------
 
 # Second prey species
